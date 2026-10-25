@@ -5,7 +5,7 @@
 TrustCar-India is an open-source, student-led project idea for a web platform that aims to make the self-drive rental journey easier to understand for both renters and vehicle owners. The initial focus is not just finding a car; it is making the steps around a booking—price clarity, handover records, deposit status, and complaint progress—more visible and traceable.
 
 > [!IMPORTANT]
-> **Project status: Early planning / documentation stage.** The repository currently contains the project plan and requirements. The working web application has **not** been built yet. Features below describe the proposed MVP, not features that are already available.
+> **Project status: Early frontend MVP.** A runnable React + TypeScript demo now exists with fictional car listings, itemised illustrative estimates, local demo booking requests, a handover checklist, simulated deposit states, and local support tickets. It has no backend, live inventory, real owner accounts, payments, or real rental functionality.
 
 ## Contents
 
@@ -18,6 +18,7 @@ TrustCar-India is an open-source, student-led project idea for a web platform th
 - [Technology direction](#technology-direction)
 - [Repository structure](#repository-structure)
 - [Getting started](#getting-started)
+- [Current demo features](#current-demo-features)
 - [Safety, privacy, and legal boundaries](#safety-privacy-and-legal-boundaries)
 - [Contributing](#contributing)
 - [License](#license)
@@ -62,6 +63,18 @@ The base idea of listing vehicles and allowing self-drive bookings already exist
 
 **Important:** these are intended design priorities, not proven advantages over existing services. We will validate them through research and usability testing before making stronger comparisons.
 
+## Current demo features
+
+The current frontend demonstrates these flows with fictional data:
+
+- Search sample cars by name, type, and city; sort by daily rate.
+- Open a car detail panel, choose dates, and create a local demo booking request.
+- View booking IDs, estimated costs, statuses, and a basic status timeline.
+- Use a pickup checklist and create support tickets with local reference IDs.
+- Review sample fee and simulated deposit information.
+
+Demo bookings and support tickets are stored in the browser's local storage. They do not sync across devices and are not sent to an owner or company. The current demo does not yet include a backend, authentication, owner/admin approval, real availability checks, or automated tests.
+
 ## Planned MVP features
 
 - **Demo roles:** renter, vehicle owner, and administrator.
@@ -94,21 +107,32 @@ The base idea of listing vehicles and allowing self-drive bookings already exist
 | Problem hypothesis and project scope | Drafted; needs validation |
 | Requirements and user journeys | Initial documentation available |
 | Legal and safety research | Checklist started; qualified review needed before any real service |
-| Web application | Not implemented yet |
+| Frontend demo | Initial implementation committed; needs local build and browser testing |
+| Backend, authentication, and database | Not implemented yet |
 | Automated tests | Not implemented yet |
-| Deployment/demo | Not available yet |
+| Automated tests | Not implemented yet |
+| Deployment/demo | Not deployed yet |
 
 See [ROADMAP.md](ROADMAP.md) for the planned milestones and [docs/MVP_PLAN.md](docs/MVP_PLAN.md) for the implementation sequence.
 
 ## Technology direction
 
-The current proposal is a responsive web application using **React + TypeScript**, a backend API, a relational database, and automated tests. The final stack will be chosen before implementation; no framework or service should be considered integrated yet.
+The frontend uses **React + TypeScript + Vite** with plain CSS. A backend API, database, authentication, role permissions, and automated tests are future work. Vite is used for local development and production builds.
 
 ## Repository structure
 
 ```text
 TrustCar-India/
 ├── README.md
+├── package.json
+├── index.html
+├── vite.config.ts
+├── tsconfig.json
+├── tsconfig.app.json
+├── src/
+│   ├── main.tsx
+│   ├── App.tsx
+│   └── styles.css
 ├── LICENSE
 ├── CONTRIBUTING.md
 ├── CODE_OF_CONDUCT.md
@@ -142,9 +166,32 @@ TrustCar-India/
 
 ## Getting started
 
-**At present, there is no runnable application.** This repository is documentation-first, so there are no installation or run commands yet. Once the app exists, this section will include tested setup instructions, demo-account details, environment configuration, and test commands.
+### Requirements
 
-For now, start with the [problem statement](docs/PROBLEM_STATEMENT.md) and [MVP plan](docs/MVP_PLAN.md).
+- Node.js 20.19+ or 22.12+ (see the [Vite guide](https://vite.dev/guide/))
+- npm, included with Node.js
+
+### Run locally
+
+```bash
+git clone https://github.com/Parth-dev026/TrustCar-India.git
+cd TrustCar-India
+npm install
+npm run dev
+```
+
+Open the local URL printed by Vite, usually `http://localhost:5173`.
+
+To check a production build:
+
+```bash
+npm run build
+npm run preview
+```
+
+The current app is a frontend-only demo. Demo bookings and tickets are stored in your browser's local storage. No environment variables are required yet. Images are loaded from remote image URLs, so an internet connection is needed to display them.
+
+For the project rationale and intended future behaviour, also read the [problem statement](docs/PROBLEM_STATEMENT.md) and [MVP plan](docs/MVP_PLAN.md).
 
 ## Safety, privacy, and legal boundaries
 
