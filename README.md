@@ -1,65 +1,167 @@
-# TrustCar-India
+# TrustCar-India 🚗
 
-**An open-source exploration of a more transparent, trustworthy self-drive car rental experience in India.**
+**Exploring a more transparent and accountable self-drive car rental experience in India.**
 
-TrustCar-India is an early-stage project exploring how a peer-to-peer self-drive rental platform could make bookings, pricing, vehicle handovers, deposits, and complaints easier to understand and track.
+TrustCar-India is an open-source, student-led project idea for a web platform that aims to make the self-drive rental journey easier to understand for both renters and vehicle owners. The initial focus is not just finding a car; it is making the steps around a booking—price clarity, handover records, deposit status, and complaint progress—more visible and traceable.
 
-> **Status: Planning / documentation MVP.** This repository currently describes the problem and proposed MVP. A functioning application has not been implemented yet.
+> [!IMPORTANT]
+> **Project status: Early planning / documentation stage.** The repository currently contains the project plan and requirements. The working web application has **not** been built yet. Features below describe the proposed MVP, not features that are already available.
 
-## Problem to explore
+## Contents
 
-People renting a self-drive vehicle may worry about unclear final charges, booking changes, deposit/refund status, vehicle-condition disagreements, and slow complaint resolution. Vehicle owners may also need clearer booking requests, handover records, and a structured way to resolve disputes.
+- [The problem](#the-problem)
+- [Our proposed approach](#our-proposed-approach)
+- [How TrustCar-India aims to be different](#how-trustcar-india-aims-to-be-different)
+- [Planned MVP features](#planned-mvp-features)
+- [Who it is for](#who-it-is-for)
+- [Project status](#project-status)
+- [Technology direction](#technology-direction)
+- [Repository structure](#repository-structure)
+- [Getting started](#getting-started)
+- [Safety, privacy, and legal boundaries](#safety-privacy-and-legal-boundaries)
+- [Contributing](#contributing)
+- [License](#license)
 
-These are research hypotheses, not claims that every provider has these problems. We need to validate them with user research and reliable sources before treating them as proven.
+## The problem
 
-## Proposed MVP
+A self-drive rental journey involves more than choosing a vehicle. Renters and owners may have questions such as:
 
-- Demo renter, vehicle owner, and administrator roles
-- Vehicle listings and basic search/filtering
-- Booking requests and owner approval
-- Itemised estimated pricing and clear terms shown before confirmation
-- Pickup and return checklists with condition notes
-- Simulated deposit and refund status tracking (no real money)
-- Complaint tickets with status, evidence checklist, and escalation history
-- Tests for pricing calculations and booking state transitions
+- What is included in the quoted price, and what other charges may apply?
+- Is a booking requested, accepted, cancelled, or still awaiting a decision?
+- What was the vehicle's condition at pickup, and how does it compare with its condition at return?
+- What is the status of a deposit or refund?
+- If something goes wrong, where can a person see the complaint status and next steps?
 
-## Principles
+These are **problem hypotheses to validate**, not verified claims about any particular company or all rental services. The project will use credible public sources and user research to determine which problems are frequent and important.
 
-1. **Transparency:** show fees and conditions before confirmation.
-2. **Traceability:** record booking, handover, complaint, and status changes.
-3. **Fairness:** design for both renters and vehicle owners.
-4. **Privacy by default:** use fictional demo data; do not collect real identity documents in the prototype.
-5. **Legal caution:** rental eligibility and permit requirements must be checked with qualified local advice before any real-world launch.
+## Our proposed approach
 
-## Planned technology
+TrustCar-India proposes a single, traceable workflow for the parts of the rental journey that can otherwise be confusing:
 
-The initial web-app direction is React + TypeScript, with a backend API, relational database, and automated tests. The exact stack will be confirmed before implementation.
+1. Review a vehicle listing and its availability.
+2. See an itemised estimated price and key terms before requesting a booking.
+3. Follow clear booking states and the terms attached to the request.
+4. Record pickup and return condition using separate checklists.
+5. View an explicitly simulated deposit/refund status in the prototype.
+6. Create a support ticket and follow its status history.
 
-## Repository guide
+The first version is a **demonstration web application using fictional data**, not a service for arranging real rentals.
 
-- docs/PROBLEM_STATEMENT.md — problem and assumptions
-- docs/REQUIREMENTS.md — MVP requirements and acceptance criteria
-- docs/MVP_PLAN.md — implementation phases
-- docs/USER_FLOWS.md — renter, owner, and admin journeys
-- docs/TECHNICAL_DESIGN.md — proposed architecture
-- docs/LEGAL_AND_SAFETY.md — legal, privacy, and safety boundaries
-- research/COMPETITOR_AND_PAIN_POINT_RESEARCH.md — research plan and validation notes
-- ROADMAP.md — project milestones
-- CONTRIBUTING.md — how to contribute
-- SECURITY.md — how to report security concerns
+## How TrustCar-India aims to be different
+
+The base idea of listing vehicles and allowing self-drive bookings already exists in the market. TrustCar-India is therefore **not claiming to invent peer-to-peer car rental**. Its proposed differentiation is to focus the prototype on the trust and transparency workflow around a booking.
+
+| Area | Typical question a user may have | TrustCar-India's proposed focus |
+|---|---|---|
+| Price clarity | “What exactly am I paying for?” | Itemised estimate, clear fee explanations, and terms shown before a booking request |
+| Booking reliability | “Has the owner accepted, and what happens next?” | Explicit booking states and visible status history |
+| Vehicle condition | “How can both sides refer to the same handover record?” | Separate pickup and return checklists with timestamps and notes |
+| Deposit visibility | “What is the current deposit/refund status?” | A clear status timeline in the prototype; no real money movement |
+| Complaint handling | “Was my issue received, and what is its status?” | Ticket number, status updates, and a traceable history |
+| Fairness to both sides | “Can the owner and renter both explain what happened?” | Records designed to document both parties' observations rather than automatically blaming either side |
+
+**Important:** these are intended design priorities, not proven advantages over existing services. We will validate them through research and usability testing before making stronger comparisons.
+
+## Planned MVP features
+
+- **Demo roles:** renter, vehicle owner, and administrator.
+- **Vehicle listings:** fictional listings with basic search and filters.
+- **Booking requests:** owner approval or decline, clear states, and prevention of overlapping accepted bookings.
+- **Price breakdown:** estimated line items and visible terms before confirmation.
+- **Pickup/return records:** separate checklists, timestamps, and notes.
+- **Deposit/refund simulation:** status tracking only; no actual payment or refund.
+- **Support tickets:** category, summary, status, and event history.
+- **Automated tests:** pricing calculations, booking conflicts, state transitions, and role permissions.
+
+### Out of scope for the first MVP
+
+- Real-world vehicle listings or rental fulfilment
+- Real payments, deposits, or refunds
+- Collection of driving licences, Aadhaar, or other identity documents
+- Automated fraud accusations or automated decisions about liability
+- Claims of legal approval or production readiness
+
+## Who it is for
+
+- **Renters** who want clearer pricing, booking status, and support visibility.
+- **Vehicle owners** who want structured booking requests and handover records.
+- **Student developers and open-source contributors** who want to learn by improving a real-world workflow through documented, testable increments.
+
+## Project status
+
+| Workstream | Status |
+|---|---|
+| Problem hypothesis and project scope | Drafted; needs validation |
+| Requirements and user journeys | Initial documentation available |
+| Legal and safety research | Checklist started; qualified review needed before any real service |
+| Web application | Not implemented yet |
+| Automated tests | Not implemented yet |
+| Deployment/demo | Not available yet |
+
+See [ROADMAP.md](ROADMAP.md) for the planned milestones and [docs/MVP_PLAN.md](docs/MVP_PLAN.md) for the implementation sequence.
+
+## Technology direction
+
+The current proposal is a responsive web application using **React + TypeScript**, a backend API, a relational database, and automated tests. The final stack will be chosen before implementation; no framework or service should be considered integrated yet.
+
+## Repository structure
+
+```text
+TrustCar-India/
+├── README.md
+├── LICENSE
+├── CONTRIBUTING.md
+├── CODE_OF_CONDUCT.md
+├── SECURITY.md
+├── ROADMAP.md
+├── .gitignore
+├── .env.example
+├── docs/
+│   ├── PROBLEM_STATEMENT.md
+│   ├── REQUIREMENTS.md
+│   ├── MVP_PLAN.md
+│   ├── USER_FLOWS.md
+│   ├── TECHNICAL_DESIGN.md
+│   └── LEGAL_AND_SAFETY.md
+└── research/
+    └── COMPETITOR_AND_PAIN_POINT_RESEARCH.md
+```
+
+### Key documents
+
+- [Problem statement](docs/PROBLEM_STATEMENT.md) — intended users, assumptions, and scope.
+- [Requirements](docs/REQUIREMENTS.md) — planned behaviour and acceptance criteria.
+- [MVP plan](docs/MVP_PLAN.md) — proposed build phases.
+- [User flows](docs/USER_FLOWS.md) — renter, owner, and administrator journeys.
+- [Technical design](docs/TECHNICAL_DESIGN.md) — proposed data model and architecture.
+- [Legal and safety checklist](docs/LEGAL_AND_SAFETY.md) — boundaries for a safe educational prototype.
+- [Research framework](research/COMPETITOR_AND_PAIN_POINT_RESEARCH.md) — how pain points and alternatives will be investigated.
+- [Roadmap](ROADMAP.md) — progress and next steps.
+- [Contribution guide](CONTRIBUTING.md) — how to suggest and contribute changes.
+- [Security policy](SECURITY.md) — how to report security concerns.
 
 ## Getting started
 
-This is currently a documentation-first repository. There is no app to run yet. Follow the roadmap for the planned implementation.
+**At present, there is no runnable application.** This repository is documentation-first, so there are no installation or run commands yet. Once the app exists, this section will include tested setup instructions, demo-account details, environment configuration, and test commands.
 
-## Important disclaimer
+For now, start with the [problem statement](docs/PROBLEM_STATEMENT.md) and [MVP plan](docs/MVP_PLAN.md).
 
-TrustCar-India is an educational prototype and is not a rental service, legal advice, or a guarantee of compliance with Indian transport laws. Do not use it to arrange real rentals or payments. Any commercial model must be reviewed against applicable central and state rules, permit requirements, insurance conditions, and platform obligations.
+## Safety, privacy, and legal boundaries
+
+TrustCar-India is an educational prototype, not a rental service, legal advice, or a guarantee of compliance with Indian transport laws. Do not use it to arrange real rentals or payments.
+
+Before any real-world launch, the proposed business and vehicle model would need qualified review of applicable central and state transport rules, permits, insurance, contracts, consumer obligations, privacy, security, and operational support. The prototype should use fictional data and must not collect real identity documents or process money.
+
+More detail: [docs/LEGAL_AND_SAFETY.md](docs/LEGAL_AND_SAFETY.md).
 
 ## Contributing
 
-Ideas, documentation improvements, research with credible sources, accessible UX suggestions, and code contributions are welcome. See CONTRIBUTING.md.
+Contributions are welcome in the form of clear documentation, credible research sources, accessible UX suggestions, tests, and later, code. Please read [CONTRIBUTING.md](CONTRIBUTING.md) and the [Code of Conduct](CODE_OF_CONDUCT.md) before participating. If you report a bug, include reproducible steps and never share secrets or personal data.
 
 ## License
 
-This project is intended to use the MIT License. See LICENSE.
+The project is licensed under the [MIT License](LICENSE). See the license file for the terms.
+
+---
+
+**Built in public as a learning project.** The aim is to validate the problem carefully, make the scope explicit, and implement and test the smallest useful workflow before expanding it.
