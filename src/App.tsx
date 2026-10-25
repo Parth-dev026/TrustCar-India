@@ -58,6 +58,13 @@ const money = (amount: number) => new Intl.NumberFormat('en-IN', {
   style: 'currency', currency: 'INR', maximumFractionDigits: 0
 }).format(amount)
 
+function inclusiveDays(startDate: string, endDate: string): number {
+  const start = new Date(`${startDate}T00:00:00`).getTime()
+  const end = new Date(`${endDate}T00:00:00`).getTime()
+  if (!Number.isFinite(start) || !Number.isFinite(end) || end < start) return 1
+  return Math.max(1, Math.round((end - start) / 86400000) + 1)
+}
+
 function readSaved<T,>(key: string, fallback: T): T {
   try {
     const value = localStorage.getItem(key)
@@ -265,7 +272,7 @@ function App() {
               <div className="modal-estimate"><div><span>Estimated daily rate</span><strong>{money(selectedCar.price)}</strong></div><div><span>Service fee / day</span><strong>{money(199)}</strong></div><div><span>Simulated refundable deposit</span><strong>{money(selectedCar.deposit)}</strong></div></div>
               <p className="form-note">Choose dates to preview a demo booking request. Dates do not check live availability.</p>
               <div className="date-fields"><label>Pickup date<input type="date" value={startDate} onChange={e => setStartDate(e.target.value)} min={new Date().toISOString().slice(0, 10)} /></label><label>Return date<input type="date" value={endDate} onChange={e => setEndDate(e.target.value)} min={startDate || new Date().toISOString().slice(0, 10)} /></label></div>
-              {startDate && endDate && new Date(endDate) >= new Date(startDate) && <div className="total-estimate"><span>Estimated total (before other costs)</span><strong>{money((selectedCar.price + 199) * (Math.max(1, Math.round((new Date(endDate + 'T00:00:00').getTime() - new Date(startDate + 'T00:00:00').getTime()) / 86400000) + 1))}</strong></div>}
+              {startDate && endDate && new Date(endDate + 'T00:00:00').getTime() >= new Date(startDate + 'T00:00:00').getTime() && <div className="total-estimate"><span>Estimated total (before other costs)</span><strong>{money((selectedCar.price + 199) * inclusiveDays(startDate, endDate))}</strong></div>}
               <button className="primary-button full-button" onClick={() => requestBooking(selectedCar)}>Request demo booking <span>→</span></button>
               <p className="modal-disclaimer">No payment, real reservation or owner notification will occur.</p>
             </div>
