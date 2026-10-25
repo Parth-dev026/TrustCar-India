@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useMemo, useState, type FormEvent } from 'react'
 
 type Car = {
   id: number
@@ -130,7 +130,7 @@ function App() {
     saveBookings(bookings.map(booking => booking.id === id ? { ...booking, status: 'Cancelled' } : booking))
   }
 
-  function submitTicket(event: React.FormEvent<HTMLFormElement>) {
+  function submitTicket(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
     if (!ticketMessage.trim()) return
     const ticket: Ticket = {
